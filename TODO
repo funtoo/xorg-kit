@@ -1,2 +1,1 @@
-# Consider adding media-libs/fontconfig to xorg-kit
-# Add all eclasses used by xorg-kit to kit and configure the kit to use local copies
+# Apply patches to fix CVEs for xorg 1.17
