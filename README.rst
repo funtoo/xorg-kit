@@ -7,7 +7,7 @@ xorg-kit
 Xorg-kit is an overlay containing all core ebuilds related to xorg for Funtoo
 Linux. It is designed to exist on users systems as an overlay, providing the
 ability for users to control what branch of xorg-kit they are using. It is
-designed to work with the ``ports-2017_`` Funtoo Linux portage tree. ``ports-2017``
+designed to work with the `ports-2017`_ Funtoo Linux portage tree. ``ports-2017``
 does *not* include xorg ebuilds so the use of xorg-kit is required with this
 portage tree.
 
@@ -43,6 +43,7 @@ ebuild, xorg-server-1.17.4-r1.ebuild.
 
 As of April 2, 2017, all known security vulnerabilities in the ``1.17-prime``
 branch have been addressed.
+
 ---------------
 Reporting Bugs
 ---------------
