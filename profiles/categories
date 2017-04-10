@@ -2,6 +2,7 @@ app-emulation
 dev-libs
 media-fonts
 media-libs
+sys-libs
 x11-apps
 x11-base
 x11-drivers
