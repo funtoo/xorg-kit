@@ -11,7 +11,7 @@ inherit linux-info xorg-2 flag-o-matic
 DESCRIPTION="X.Org driver for Intel cards"
 
 KEYWORDS="amd64 x86 ~amd64-fbsd -x86-fbsd"
-IUSE="debug dri3 +sna +udev uxa xvmc"
+IUSE="debug +dri3 +sna +udev uxa xvmc"
 COMMIT_ID="c28e62f94f15c9f5c4fb0744588f08ae18e4a9b5"
 SRC_URI="https://cgit.freedesktop.org/xorg/driver/xf86-video-intel/snapshot/${COMMIT_ID}.tar.xz -> ${P}.tar.xz"
 
@@ -25,7 +25,7 @@ RDEPEND="x11-libs/libXext
 	>=x11-libs/pixman-0.27.1
 	>=x11-libs/libdrm-2.4.29[video_cards_intel]
 	dri3? (
-		>=x11-base/xorg-server-1.18
+		>=x11-base/xorg-server-1.15
 	)
 	sna? (
 		>=x11-base/xorg-server-1.10
@@ -58,6 +58,12 @@ src_configure() {
 		$(use_enable xvmc)
 	)
 	xorg-2_src_configure
+}
+
+src_install() {
+	insinto /usr/share/X11/xorg.conf.d
+	doins $FILESDIR/20-intel.conf
+	xorg-2_src_install
 }
 
 pkg_postinst() {
