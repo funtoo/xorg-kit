@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -116,7 +117,7 @@ _filter-var() {
 		done
 		new+=( "${f}" )
 	done
-	export ${var}="${new[*]}"
+	eval export ${var}=\""${new[*]}"\"
 }
 
 # @FUNCTION: filter-flags
@@ -270,7 +271,7 @@ replace-flags() {
 			[[ ${f} == ${1} ]] && f=${2}
 			new+=( "${f}" )
 		done
-		export ${var}="${new[*]}"
+		eval export ${var}=\""${new[*]}"\"
 	done
 
 	return 0
@@ -295,8 +296,9 @@ replace-cpu-flags() {
 }
 
 _is_flagq() {
-	local x var="$1[*]"
-	for x in ${!var} ; do
+	local x var
+	eval var=\""\${$1[*]}"\"
+	for x in ${var} ; do
 		[[ ${x} == $2 ]] && return 0
 	done
 	return 1
@@ -410,7 +412,7 @@ strip-flags() {
 		if [[ ${!var} != "${new[*]}" ]] ; then
 			einfo "strip-flags: ${var}: changed '${!var}' to '${new[*]}'"
 		fi
-		export ${var}="${new[*]}"
+		eval export ${var}=\""${new[*]}"\"
 	done
 
 	set +f	# re-enable pathname expansion

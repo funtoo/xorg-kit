@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -168,8 +169,8 @@ tc-getBUILD_PKG_CONFIG() { tc-getBUILD_PROG PKG_CONFIG pkg-config "$@"; }
 tc-export() {
 	local var
 	for var in "$@" ; do
-		[[ $(type -t "tc-get${var}") != "function" ]] && die "tc-export: invalid export variable '${var}'"
-		"tc-get${var}" > /dev/null
+		[[ $(type -t tc-get${var}) != "function" ]] && die "tc-export: invalid export variable '${var}'"
+		eval tc-get${var} > /dev/null
 	done
 }
 
