@@ -2,8 +2,10 @@
 # your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using egencache *
 
+media-fonts/corefonts:tahoma - Also install the Tahoma font. Due to the lack of a free bold variant, this may render badly. See bug 184790.
+media-fonts/dejavu:fontforge - Use media-gfx/fontforge to build fonts from source
+media-fonts/liberation-fonts:fontforge - Use media-gfx/fontforge to build fonts from source
 media-libs/freetype:adobe-cff - Use Adobe CFF as default font-renderer
-media-libs/freetype:auto-hinter - Use the unpatented auto-hinter instead of the (recommended) TrueType bytecode interpreter
 media-libs/freetype:bindist - Disable ClearType support (see http://freetype.org/patents.html)
 media-libs/freetype:bzip2 - Support bzip2 compressed PCF fonts.
 media-libs/freetype:cleartype_hinting - New bytecode hinting mode for TrueType fonts that activates subpixel hinting (a.k.a. ClearType hinting) by default
@@ -39,6 +41,8 @@ media-libs/mesa:xvmc - Enable the XvMC acceleration interface for the Gallium3D 
 x11-apps/intel-gpu-tools:python - Install python based register dumper utilities
 x11-apps/intel-gpu-tools:test-programs - Install test programs for DRM driver development
 x11-apps/intel-gpu-tools:unwind - Provide automatic stack traces on test failures
+x11-apps/mesa-progs:egl - Build EGL utilities
+x11-apps/mesa-progs:gles2 - Build OpenGL ES 2 utilities
 x11-apps/xdm:consolekit - Enable native sys-auth/consolekit support
 x11-apps/xdm:xdm-auth - Enable XDM-AUTHENTICATION-1 support
 x11-apps/xdpyinfo:dmx - Builds support for Distributed Multiheaded X x11-base/xorg-server
@@ -77,6 +81,7 @@ x11-drivers/xf86-video-intel:xvmc - Enables X-Video Motion Compensation support
 x11-drivers/xf86-video-nouveau:glamor - Enable Glamor OpenGL 2D acceleration
 x11-drivers/xf86-video-openchrome:viaregtool - Install registers dumper tool
 x11-drivers/xf86-video-qxl:xspice - Build the xspice driver
+x11-libs/glamor:gles - Build glamor based on gles2
 x11-libs/libSM:uuid - Use UUID for session identification instead of IP address and system time.
 x11-libs/libXaw:deprecated - Install deprecated Xaw6 library.
 x11-libs/libXfont:bzip2 - Support bzip2 compressed PCF fonts.
@@ -90,3 +95,4 @@ x11-libs/libva:egl - Enables EGL support.
 x11-libs/libva-intel-driver:drm - Enables VA/DRM API support.
 x11-libs/libxcb:xkb - Enable the XCB keyboard extension
 x11-libs/pixman:loongson2f - Enable Loongson2f MMI optimizations.
+x11-misc/bumblebee:bbswitch - Add dependency on sys-power/bbswitch for PM feature

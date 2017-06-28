@@ -3,6 +3,7 @@ dev-libs
 media-fonts
 media-libs
 sys-libs
+virtual
 x11-apps
 x11-base
 x11-drivers

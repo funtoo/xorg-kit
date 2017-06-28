@@ -1,24 +1,26 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
 SCM=""
 if [ "${PV%9999}" != "${PV}" ] ; then # Live ebuild
-	SCM=git-r3
+	SCM=git-2
 	EGIT_BRANCH=master
-	EGIT_REPO_URI="https://github.com/01org/intel-vaapi-driver"
+	EGIT_REPO_URI="git://anongit.freedesktop.org/git/vaapi/intel-driver"
 fi
 
 AUTOTOOLS_AUTORECONF="yes"
 inherit autotools-multilib ${SCM}
 
 DESCRIPTION="HW video decode support for Intel integrated graphics"
-HOMEPAGE="https://github.com/01org/intel-vaapi-driver"
+HOMEPAGE="https://www.freedesktop.org/wiki/Software/vaapi"
 if [ "${PV%9999}" != "${PV}" ] ; then # Live ebuild
 	SRC_URI=""
+	S="${WORKDIR}/${PN}"
 else
-	SRC_URI="https://github.com/01org/intel-vaapi-driver/archive/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://www.freedesktop.org/software/vaapi/releases/libva-intel-driver/${P}.tar.bz2"
 fi
 
 LICENSE="MIT"
@@ -38,7 +40,6 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 DOCS=( AUTHORS NEWS README )
-AUTOTOOLS_PRUNE_LIBTOOL_FILES="all"
 
 src_prepare() {
 	sed -e 's/intel-gen4asm/\0diSaBlEd/g' -i configure.ac || die
