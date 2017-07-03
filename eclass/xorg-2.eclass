@@ -115,7 +115,7 @@ fi
 
 # Set up autotools shared dependencies
 # Remember that all versions here MUST be stable
-XORG_EAUTORECONF_ARCHES="x86-interix ppc-aix x86-winnt"
+XORG_EAUTORECONF_ARCHES=""
 EAUTORECONF_DEPEND+="
 	>=sys-devel/libtool-2.2.6a
 	sys-devel/m4"

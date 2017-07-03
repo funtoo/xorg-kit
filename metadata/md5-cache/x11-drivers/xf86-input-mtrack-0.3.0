@@ -1,5 +1,5 @@
 DEFINED_PHASES=compile configure install postinst postrm prepare setup test unpack
-DEPEND=>=sys-libs/mtdev-1.0 x11-proto/randrproto x11-proto/videoproto x11-proto/xineramaproto >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 x86-interix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.18 >=media-fonts/font-util-1.2.0 ) ppc-aix? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.18 >=media-fonts/font-util-1.2.0 ) x86-winnt? ( >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.18 >=media-fonts/font-util-1.2.0 ) >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.18 >=media-fonts/font-util-1.2.0 virtual/pkgconfig x11-proto/inputproto x11-proto/kbproto x11-proto/xproto x11-base/xorg-server[xorg]
+DEPEND=>=sys-libs/mtdev-1.0 x11-proto/randrproto x11-proto/videoproto x11-proto/xineramaproto >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 >=sys-devel/libtool-2.2.6a sys-devel/m4 >=x11-misc/util-macros-1.18 >=media-fonts/font-util-1.2.0 virtual/pkgconfig x11-proto/inputproto x11-proto/kbproto x11-proto/xproto x11-base/xorg-server[xorg]
 DESCRIPTION=Xorg Driver for Multitouch Trackpads
 EAPI=4
 HOMEPAGE=https://github.com/BlueDragonX/xf86-input-mtrack
@@ -9,5 +9,5 @@ LICENSE=GPL-2
 RDEPEND=>=sys-libs/mtdev-1.0 x11-base/xorg-server[xorg]
 SLOT=0
 SRC_URI=https://github.com/BlueDragonX/xf86-input-mtrack/tarball/v0.3.0 -> xf86-input-mtrack-0.3.0.tar.gz
-_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	autotools-utils	419811142edf3516b0d0cf1a254d93cb	eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	7366202dd55cb8f018f5d450d54e7749	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	vcs-snapshot	2b65ecb2d0f91e4322c2ac8d673993bd	xorg-2	b41f09eee8d441f780b7413dba7e120b
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	autotools-utils	419811142edf3516b0d0cf1a254d93cb	eutils	b83a2420b796f7c6eff682679d08fe25	flag-o-matic	7366202dd55cb8f018f5d450d54e7749	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	vcs-snapshot	2b65ecb2d0f91e4322c2ac8d673993bd	xorg-2	62daa6402778a2f6310839fbe16848e2
 _md5_=385f44c4f159d5772c8e6749bd4c7233
