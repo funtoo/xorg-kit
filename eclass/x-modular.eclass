@@ -1,6 +1,5 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 #
 # DEPRECATED
 # This eclass has been superseded by xorg-2
@@ -69,7 +68,7 @@ EXPORT_FUNCTIONS ${EXPORTED_FUNCTIONS}
 XDIR="/usr"
 
 IUSE=""
-HOMEPAGE="http://xorg.freedesktop.org/"
+HOMEPAGE="https://www.x.org/wiki/"
 
 # @ECLASS-VARIABLE: SNAPSHOT
 # @DESCRIPTION:
@@ -78,7 +77,7 @@ HOMEPAGE="http://xorg.freedesktop.org/"
 : ${SNAPSHOT:=no}
 
 # Set up SRC_URI for individual modular releases
-BASE_INDIVIDUAL_URI="http://xorg.freedesktop.org/releases/individual"
+BASE_INDIVIDUAL_URI="https://www.x.org/releases/individual"
 # @ECLASS-VARIABLE: MODULE
 # @DESCRIPTION:
 # The subdirectory to download source from. Possible settings are app,

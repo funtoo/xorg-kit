@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
@@ -15,7 +14,7 @@ AUTOTOOLS_AUTORECONF="yes"
 inherit autotools-multilib ${SCM}
 
 DESCRIPTION="HW video decode support for Intel integrated graphics"
-HOMEPAGE="https://www.freedesktop.org/wiki/Software/vaapi"
+HOMEPAGE="https://github.com/01org/intel-vaapi-driver"
 if [ "${PV%9999}" != "${PV}" ] ; then # Live ebuild
 	SRC_URI=""
 	S="${WORKDIR}/${PN}"
@@ -26,7 +25,7 @@ fi
 LICENSE="MIT"
 SLOT="0"
 if [ "${PV%9999}" = "${PV}" ] ; then
-	KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+	KEYWORDS="amd64 x86 ~amd64-linux ~x86-linux"
 else
 	KEYWORDS=""
 fi
