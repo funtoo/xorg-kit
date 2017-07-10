@@ -1,24 +1,27 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
-EAPI=6
-
-EGIT_REPO_URI="git://anongit.freedesktop.org/git/wayland/${PN}"
+EAPI=5
 
 if [[ ${PV} = 9999* ]]; then
+	EGIT_REPO_URI="git://anongit.freedesktop.org/git/${PN}/${PN}"
 	GIT_ECLASS="git-r3"
+	EXPERIMENTAL="true"
+	AUTOTOOLS_AUTORECONF=1
 fi
 
-inherit autotools libtool ltprune multilib-minimal toolchain-funcs $GIT_ECLASS
+inherit autotools-multilib toolchain-funcs $GIT_ECLASS
 
 DESCRIPTION="Wayland protocol libraries"
 HOMEPAGE="https://wayland.freedesktop.org/"
 
 if [[ $PV = 9999* ]]; then
-	SRC_URI=""
+	SRC_URI="${SRC_PATCHES}"
+	KEYWORDS=""
 else
 	SRC_URI="https://wayland.freedesktop.org/releases/${P}.tar.xz"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 fi
 
 LICENSE="MIT"
@@ -37,36 +40,22 @@ DEPEND="${RDEPEND}
 	)
 	virtual/pkgconfig"
 
-src_prepare() {
-	default
-	[[ $PV = 9999* ]] && eautoreconf || elibtoolize
-}
-
 multilib_src_configure() {
-	local myconf
+	local myeconfargs=(
+		$(multilib_native_use_enable doc documentation)
+		$(multilib_native_enable dtd-validation)
+	)
 	if tc-is-cross-compiler ; then
-		myconf+=' --with-host-scanner '
+		myeconfargs+=( --with-host-scanner )
 	fi
 
-	ECONF_SOURCE="${S}" econf \
-		--disable-static \
-		$(multilib_native_use_enable doc documentation) \
-		$(multilib_native_enable dtd-validation) \
-		${myconf}
-}
-
-multilib_src_install_all() {
-	prune_libtool_files
-	einstalldocs
+	autotools-utils_src_configure
 }
 
 src_test() {
-	# We set it on purpose to only a short subdir name, as socket paths are
-	# created in there, which are 108 byte limited. With this it hopefully
-	# barely fits to the limit with /var/tmp/portage/$CAT/$PF/temp/xdr
-	export XDG_RUNTIME_DIR="${T}"/xdr
+	export XDG_RUNTIME_DIR="${T}/runtime-dir"
 	mkdir "${XDG_RUNTIME_DIR}" || die
 	chmod 0700 "${XDG_RUNTIME_DIR}" || die
 
-	multilib-minimal_src_test
+	autotools-multilib_src_test
 }

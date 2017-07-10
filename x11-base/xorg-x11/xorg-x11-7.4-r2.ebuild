@@ -1,12 +1,13 @@
 # Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI="2"
 
 inherit eutils
 
 DESCRIPTION="An X11 implementation maintained by the X.Org Foundation (meta package)"
-HOMEPAGE="https://www.x.org/wiki/"
+HOMEPAGE="http://xorg.freedesktop.org"
 
 LICENSE="metapackage"
 SLOT="0"

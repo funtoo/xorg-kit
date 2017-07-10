@@ -32,13 +32,13 @@ media-libs/mesa:openssl - Use dev-libs/openssl for low level sha1 utility functi
 media-libs/mesa:osmesa - Build the Mesa library for off-screen rendering.
 media-libs/mesa:pax_kernel - Enable if the user plans to run the package under a pax enabled hardened kernel
 media-libs/mesa:pic - disable optimized assembly code that is not PIC friendly
-media-libs/mesa:unwind - Add support for stack trace unwinding and function name resolution
 media-libs/mesa:valgrind - Compile in valgrind memory hints
 media-libs/mesa:vdpau - Enable the VDPAU acceleration interface for the Gallium3D Video Layer.
 media-libs/mesa:vulkan - Enable Vulkan drivers
 media-libs/mesa:wayland - Enable support for dev-libs/wayland
 media-libs/mesa:xa - Enable the XA (X Acceleration) API for Gallium3D.
 media-libs/mesa:xvmc - Enable the XvMC acceleration interface for the Gallium3D Video Layer.
+x11-apps/intel-gpu-tools:python - Install python based register dumper utilities
 x11-apps/intel-gpu-tools:test-programs - Install test programs for DRM driver development
 x11-apps/intel-gpu-tools:unwind - Provide automatic stack traces on test failures
 x11-apps/mesa-progs:egl - Build EGL utilities
@@ -57,9 +57,14 @@ x11-base/xorg-server:xephyr - Build the Xephyr server
 x11-base/xorg-server:xnest - Build the Xnest server
 x11-base/xorg-server:xorg - Build the Xorg X server (HIGHLY RECOMMENDED)
 x11-base/xorg-server:xvfb - Build the Xvfb server
+x11-drivers/ati-drivers:gdm-hack - Do a potentially dangerous binary search and replace to fix gdm compatibility
+x11-drivers/ati-drivers:modules - Build the kernel modules
+x11-drivers/ati-drivers:pax_kernel - Enable pax kernel specific patches
+x11-drivers/ati-drivers:qt4 - Install qt4 dependent optional tools (e.g Catalyst Control Panel)
 x11-drivers/nvidia-drivers:X - Install the X.org driver, OpenGL libraries, XvMC libraries, and VDPAU libraries
 x11-drivers/nvidia-drivers:compat - Install non-GLVND libGL for backwards compatibility
 x11-drivers/nvidia-drivers:driver - Install the kernel driver module
+x11-drivers/nvidia-drivers:gtk2 - Install nvidia-settings with support for GTK+ 2
 x11-drivers/nvidia-drivers:gtk3 - Install nvidia-settings with support for GTK+ 3
 x11-drivers/nvidia-drivers:kms - Enable support for kernel mode setting (KMS)
 x11-drivers/nvidia-drivers:pax_kernel - PaX patches from the PaX project
@@ -73,8 +78,10 @@ x11-drivers/xf86-video-intel:glamor - Enable Glamor OpenGL 2D acceleration
 x11-drivers/xf86-video-intel:sna - Enable SandyBridge's New Acceleration (useful on all chipsets, not just SandyBridge)
 x11-drivers/xf86-video-intel:uxa - Enable UMA Acceleration Architecture
 x11-drivers/xf86-video-intel:xvmc - Enables X-Video Motion Compensation support
+x11-drivers/xf86-video-nouveau:glamor - Enable Glamor OpenGL 2D acceleration
 x11-drivers/xf86-video-openchrome:viaregtool - Install registers dumper tool
 x11-drivers/xf86-video-qxl:xspice - Build the xspice driver
+x11-libs/glamor:gles - Build glamor based on gles2
 x11-libs/libSM:uuid - Use UUID for session identification instead of IP address and system time.
 x11-libs/libXaw:deprecated - Install deprecated Xaw6 library.
 x11-libs/libXfont:bzip2 - Support bzip2 compressed PCF fonts.
