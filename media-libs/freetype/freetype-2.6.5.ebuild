@@ -15,13 +15,12 @@ SRC_URI="mirror://sourceforge/freetype/${P/_/}.tar.bz2
 	utils?	( mirror://sourceforge/freetype/ft2demos-${PV}.tar.bz2
 		mirror://nongnu/freetype/ft2demos-${PV}.tar.bz2 )
 	doc?	( mirror://sourceforge/freetype/${PN}-doc-${PV}.tar.bz2
-		mirror://nongnu/freetype/${PN}-doc-${PV}.tar.bz2 )
-	infinality? ( https://dev.gentoo.org/~polynomial-c/${INFINALITY_PATCH}.xz )"
+		mirror://nongnu/freetype/${PN}-doc-${PV}.tar.bz2 )"
 
 LICENSE="|| ( FTL GPL-2+ )"
 SLOT="2"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~s390 ~sh ~sparc x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="X +adobe-cff bindist bzip2 debug doc fontforge harfbuzz
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+IUSE="X +adobe-cff bindist bzip2 cleartype_hinting debug doc fontforge harfbuzz
 	infinality png static-libs utils"
 RESTRICT="!bindist? ( bindist )" # bug 541408
 
@@ -41,6 +40,8 @@ DEPEND="${CDEPEND}
 RDEPEND="${CDEPEND}
 	abi_x86_32? ( utils? ( !app-emulation/emul-linux-x86-xlibs[-abi_x86_32(-)] ) )"
 PDEPEND="infinality? ( media-libs/fontconfig-infinality )"
+
+REQUIRED_USE="?? ( cleartype_hinting infinality )"
 
 PATCHES=(
 	# This is the same as the 01 patch from infinality
@@ -65,10 +66,13 @@ src_prepare() {
 	default
 
 	if use infinality; then
-		eapply "${WORKDIR}/${INFINALITY_PATCH}"
-
 		# FT_CONFIG_OPTION_SUBPIXEL_RENDERING is already enabled in freetype-2.4.11
-		enable_option TT_CONFIG_OPTION_SUBPIXEL_HINTING
+		enable_option "TT_CONFIG_OPTION_SUBPIXEL_HINTING  1"
+	fi
+
+	if use cleartype_hinting; then
+		# Will be the new default for >=freetype-2.7.0
+		enable_option "TT_CONFIG_OPTION_SUBPIXEL_HINTING  2"
 	fi
 
 	if ! use bindist; then
