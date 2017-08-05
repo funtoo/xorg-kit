@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile configure install prepare unpack
+DEPEND=media-libs/mesa[egl?,gles2?] virtual/opengl x11-libs/libX11 media-libs/glew virtual/glu x11-proto/xproto >=app-portage/elt-patches-20170317 !<sys-devel/gettext-0.18.1.1-r3 || ( >=sys-devel/automake-1.15:1.15 ) >=sys-devel/autoconf-2.69 >=sys-devel/libtool-2.4 >=dev-vcs/git-1.8.2.1
+DESCRIPTION=Mesa's OpenGL utility and demo programs (glxgears and glxinfo)
+EAPI=5
+HOMEPAGE=http://mesa3d.sourceforge.net/
+IUSE=egl gles2
+LICENSE=LGPL-2
+RDEPEND=media-libs/mesa[egl?,gles2?] virtual/opengl x11-libs/libX11
+SLOT=0
+_eclasses_=autotools	07e71b3b5690738ef7e8bc097077e00c	base	3fe4f8980633fd7bc69e9887209ba2fe	eutils	b83a2420b796f7c6eff682679d08fe25	git-r3	e928b84a9f6f1d9076d1d27687876dc6	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee
+_md5_=effa65bacbe1373422ca9b8eee41a3c9
