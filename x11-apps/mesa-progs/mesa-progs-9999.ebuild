@@ -1,12 +1,11 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
 MY_PN=${PN/progs/demos}
 MY_P=${MY_PN}-${PV}
-EGIT_REPO_URI="git://anongit.freedesktop.org/${MY_PN/-//}"
+EGIT_REPO_URI="https://anongit.freedesktop.org/git/mesa/demos.git"
 
 if [[ ${PV} = 9999* ]]; then
 	GIT_ECLASS="git-r3"
@@ -16,13 +15,13 @@ fi
 inherit base autotools toolchain-funcs ${GIT_ECLASS}
 
 DESCRIPTION="Mesa's OpenGL utility and demo programs (glxgears and glxinfo)"
-HOMEPAGE="http://mesa3d.sourceforge.net/"
+HOMEPAGE="https://www.mesa3d.org/ https://mesa.freedesktop.org/"
 if [[ ${PV} == 9999* ]]; then
 	SRC_URI=""
 	KEYWORDS=""
 else
-	SRC_URI="ftp://ftp.freedesktop.org/pub/${MY_PN/-//}/${PV}/${MY_P}.tar.bz2"
-	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+	SRC_URI="https://mesa.freedesktop.org/archive/demos/${PV}/${MY_P}.tar.bz2"
+	KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sh ~sparc ~x86 ~x86-fbsd ~amd64-linux ~x86-linux"
 fi
 
 LICENSE="LGPL-2"

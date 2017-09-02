@@ -1,6 +1,5 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 inherit eutils flag-o-matic linux-info linux-mod multilib-minimal nvidia-driver \
@@ -33,14 +32,14 @@ COMMON="
 	app-eselect/eselect-opencl
 	kernel_linux? ( >=sys-libs/glibc-2.6.1 )
 	tools? (
-		dev-libs/atk[${MULTILIB_USEDEP}]
-		dev-libs/glib:2[${MULTILIB_USEDEP}]
-		dev-libs/jansson[${MULTILIB_USEDEP}]
-		x11-libs/gdk-pixbuf[${MULTILIB_USEDEP}]
-		>=x11-libs/gtk+-2.4:2[${MULTILIB_USEDEP}]
-		x11-libs/libX11[${MULTILIB_USEDEP}]
-		x11-libs/libXext[${MULTILIB_USEDEP}]
-		x11-libs/pango[X,${MULTILIB_USEDEP}]
+		dev-libs/atk
+		dev-libs/glib:2
+		dev-libs/jansson
+		x11-libs/gdk-pixbuf[X]
+		>=x11-libs/gtk+-2.4:2
+		x11-libs/libX11
+		x11-libs/libXext
+		x11-libs/pango[X]
 	)
 	X? (
 		>=app-eselect/eselect-opengl-1.0.9
@@ -72,7 +71,7 @@ QA_PREBUILT="opt/* usr/lib*"
 
 S=${WORKDIR}/
 
-pkg_pretend() {
+nvidia_drivers_versions_check() {
 	if use amd64 && has_multilib_profile && \
 		[ "${DEFAULT_ABI}" != "amd64" ]; then
 		eerror "This ebuild doesn't currently support changing your default ABI"
@@ -107,7 +106,13 @@ pkg_pretend() {
 	use kernel_linux && check_extra_config
 }
 
+pkg_pretend() {
+	nvidia_drivers_versions_check
+}
+
 pkg_setup() {
+	nvidia_drivers_versions_check
+
 	# try to turn off distcc and ccache for people that have a problem with it
 	export DISTCC_DISABLE=1
 	export CCACHE_DISABLE=1

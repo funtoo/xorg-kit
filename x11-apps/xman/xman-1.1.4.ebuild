@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 XORG_EAUTORECONF=yes
@@ -8,7 +7,7 @@ inherit xorg-2
 
 DESCRIPTION="Manual page display program for the X Window System"
 
-KEYWORDS="alpha ~amd64 arm hppa ~mips ~ppc ppc64 ~s390 ~sh ~sparc ~x86"
+KEYWORDS="alpha amd64 arm hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86"
 IUSE=""
 
 DEPEND="x11-libs/libXaw
