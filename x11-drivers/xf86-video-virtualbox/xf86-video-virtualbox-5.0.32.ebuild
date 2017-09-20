@@ -15,17 +15,16 @@ SRC_URI="http://download.virtualbox.org/virtualbox/${MY_PV}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="dri"
-REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
-RDEPEND="
-	>=x11-base/xorg-server-1.7:=[-minimal]
-	x11-libs/libXcomposite
-	${PYTHON_DEPS}"
+RDEPEND="<x11-base/xorg-server-1.19:=[-minimal]
+	x11-libs/libXcomposite"
 DEPEND="${RDEPEND}
+	${PYTHON_DEPS}
 	>=dev-lang/yasm-0.6.2
 	>=dev-util/kbuild-0.1.9998_pre20131130
+	>=sys-devel/gcc-4.9.0
 	sys-power/iasl
 	x11-proto/fontsproto
 	x11-proto/randrproto
@@ -44,6 +43,8 @@ DEPEND="${RDEPEND}
 		>=x11-libs/libdrm-2.4.5 )"
 PDEPEND="dri? ( ~app-emulation/virtualbox-guest-additions-${PV} )"
 
+REQUIRED_USE=( "${PYTHON_REQUIRED_USE}" )
+
 BUILD_TARGETS="all"
 BUILD_TARGET_ARCH="${ARCH}"
 S="${WORKDIR}/${MY_P}"
@@ -55,12 +56,6 @@ PATCHES=(
 
 	# unset useless/problematic checks in configure
 	"${FILESDIR}/${PN}-5.0.0_beta3-configure_checks.patch"
-
-	# xorg-1.19 patch from opensuse (bug #602784)
-	"${FILESDIR}/${PN}-5.1.10-xorg119.patch"
-
-	# fix bug #579946
-	"${FILESDIR}/${PN}-5.1.22-sysmacros.patch"
 )
 
 QA_TEXTRELS_x86="usr/lib/VBoxOGL.so"
@@ -75,7 +70,7 @@ pkg_setup() {
 
 src_prepare() {
 	# Prepare the vboxvideo_drm Makefiles and build dir
-	eapply "${FILESDIR}"/${PN}-5.1.24-Makefile.module.kms.patch
+	eapply "${FILESDIR}"/${PN}-5.1.4-Makefile.module.kms.patch
 
 	# Remove shipped binaries (kBuild,yasm), see bug #232775
 	rm -r kBuild/bin tools || die
@@ -83,8 +78,9 @@ src_prepare() {
 	# Disable things unused or splitted into separate ebuilds
 	cp "${FILESDIR}/${PN}-5-localconfig" LocalConfig.kmk || die
 
-	# Remove pointless GCC version check
-	sed -e '/^check_gcc$/d' -i configure || die
+	# Remove pointless GCC version limitations in check_gcc()
+	sed -e "/\s*-o\s*\\\(\s*\$cc_maj\s*-eq\s*[5-9]\s*-a\s*\$cc_min\s*-gt\s*[0-5]\s*\\\)\s*\\\/d" \
+		-i configure || die
 
 	default
 

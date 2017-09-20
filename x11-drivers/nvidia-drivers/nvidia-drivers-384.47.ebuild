@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -21,13 +20,13 @@ SRC_URI="
 	x86-fbsd? ( ${NV_URI}FreeBSD-x86/${PV}/${X86_FBSD_NV_PACKAGE}.tar.gz )
 	x86? ( ${NV_URI}Linux-x86/${PV}/${X86_NV_PACKAGE}.run )
 	tools? (
-		https://github.com/NVIDIA/nvidia-settings/archive/${PV}.tar.gz -> nvidia-settings-${PV}.tar.gz
+		${NV_URI}nvidia-settings/nvidia-settings-${PV}.tar.bz2
 	)
 "
 
 LICENSE="GPL-2 NVIDIA-r2"
 SLOT="0/${PV%.*}"
-KEYWORDS="-* ~amd64 ~x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS=""
 RESTRICT="bindist mirror"
 EMULTILIB_PKG="true"
 
@@ -41,21 +40,19 @@ COMMON="
 	app-eselect/eselect-opencl
 	kernel_linux? ( >=sys-libs/glibc-2.6.1 )
 	tools? (
-		dev-libs/atk
-		dev-libs/glib:2
-		dev-libs/jansson
-		gtk3? (
-			x11-libs/gtk+:3
-		)
-		x11-libs/cairo
-		x11-libs/gdk-pixbuf[X]
-		x11-libs/gtk+:2
-		x11-libs/libX11
-		x11-libs/libXext
-		x11-libs/libXrandr
-		x11-libs/libXv
-		x11-libs/libXxf86vm
-		x11-libs/pango[X]
+		dev-libs/atk[${MULTILIB_USEDEP}]
+		dev-libs/glib:2[${MULTILIB_USEDEP}]
+		dev-libs/jansson[${MULTILIB_USEDEP}]
+		gtk3? ( x11-libs/gtk+:3[X,${MULTILIB_USEDEP}] )
+		x11-libs/cairo[${MULTILIB_USEDEP}]
+		x11-libs/gdk-pixbuf[X,${MULTILIB_USEDEP}]
+		x11-libs/gtk+:2[${MULTILIB_USEDEP}]
+		x11-libs/libX11[${MULTILIB_USEDEP}]
+		x11-libs/libXext[${MULTILIB_USEDEP}]
+		x11-libs/libXrandr[${MULTILIB_USEDEP}]
+		x11-libs/libXv[${MULTILIB_USEDEP}]
+		x11-libs/libXxf86vm[${MULTILIB_USEDEP}]
+		x11-libs/pango[X,${MULTILIB_USEDEP}]
 	)
 	X? (
 		>=app-eselect/eselect-opengl-1.0.9
@@ -85,18 +82,18 @@ QA_PREBUILT="opt/* usr/lib*"
 
 S=${WORKDIR}/
 
-nvidia_drivers_versions_check() {
+pkg_pretend() {
 	if use amd64 && has_multilib_profile && \
 		[ "${DEFAULT_ABI}" != "amd64" ]; then
 		eerror "This ebuild doesn't currently support changing your default ABI"
 		die "Unexpected \${DEFAULT_ABI} = ${DEFAULT_ABI}"
 	fi
 
-	if use kernel_linux && kernel_is ge 4 12; then
+	if use kernel_linux && kernel_is ge 4 13; then
 		ewarn "Gentoo supports kernels which are supported by NVIDIA"
 		ewarn "which are limited to the following kernels:"
-		ewarn "<sys-kernel/gentoo-sources-4.12"
-		ewarn "<sys-kernel/vanilla-sources-4.12"
+		ewarn "<sys-kernel/gentoo-sources-4.13"
+		ewarn "<sys-kernel/vanilla-sources-4.13"
 		ewarn ""
 		ewarn "You are free to utilize epatch_user to provide whatever"
 		ewarn "support you feel is appropriate, but will not receive"
@@ -120,13 +117,7 @@ nvidia_drivers_versions_check() {
 	use kernel_linux && check_extra_config
 }
 
-pkg_pretend() {
-	nvidia_drivers_versions_check
-}
-
 pkg_setup() {
-	nvidia_drivers_versions_check
-
 	# try to turn off distcc and ccache for people that have a problem with it
 	export DISTCC_DISABLE=1
 	export CCACHE_DISABLE=1
@@ -184,12 +175,12 @@ src_prepare() {
 		ewarn "need support with these patches, contact the PaX team."
 		eapply "${FILESDIR}"/${PN}-375.20-pax.patch
 	fi
-
+	
 	local man_file
 	for man_file in "${NV_MAN}"/*1.gz; do
 		gunzip $man_file || die
 	done
-
+	
 	# Allow user patches so they can support RC kernels and whatever else
 	eapply_user
 }
@@ -358,9 +349,6 @@ src_install() {
 
 	if use X; then
 		doexe ${NV_OBJ}/nvidia-xconfig
-
-		insinto /etc/vulkan/icd.d
-		doins nvidia_icd.json
 	fi
 
 	if use kernel_linux; then
@@ -379,6 +367,7 @@ src_install() {
 		doman nvidia-cuda-mps-control.1
 		doman nvidia-modprobe.1
 		doman nvidia-persistenced.1
+
 		newinitd "${FILESDIR}/nvidia-smi.init" nvidia-smi
 		newconfd "${FILESDIR}/nvidia-persistenced.conf" nvidia-persistenced
 		newinitd "${FILESDIR}/nvidia-persistenced.init" nvidia-persistenced
@@ -441,10 +430,10 @@ src_install-libs() {
 	local inslibdir=$(get_libdir)
 	local GL_ROOT="/usr/$(get_libdir)/opengl/nvidia/lib"
 	local CL_ROOT="/usr/$(get_libdir)/OpenCL/vendors/nvidia"
-	local nv_libdir="${NV_OBJ}"
+	local nv_libdir=${NV_OBJ}
 
 	if use kernel_linux && has_multilib_profile && [[ ${ABI} == "x86" ]]; then
-		nv_libdir="${NV_OBJ}"/32
+		nv_libdir=${NV_OBJ}/32
 	fi
 
 	if use X; then
@@ -504,9 +493,17 @@ src_install-libs() {
 		fi
 
 		for NV_LIB in "${NV_GLX_LIBRARIES[@]}"; do
-			donvidia "${nv_libdir}"/${NV_LIB}
+			donvidia ${nv_libdir}/${NV_LIB}
 		done
 	fi
+	# create VDPAU symlinks
+	dosym /usr/$(get_libdir)/libvdpau_nvidia.so.${NV_SOVER} /usr/$(get_libdir)/vdpau/libvdpau_nvidia.so
+	dosym /usr/$(get_libdir)/libvdpau_nvidia.so.${NV_SOVER} /usr/$(get_libdir)/vdpau/libvdpau_nvidia.so.1
+
+	# FL-2219. install nouveau blacklist file.
+	insinto $(get_libdir)/modprobe.d
+	doins ${FILESDIR}/blacklist-nouveau.conf
+
 }
 
 pkg_preinst() {

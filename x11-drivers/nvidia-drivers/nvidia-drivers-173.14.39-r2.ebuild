@@ -1,5 +1,6 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
@@ -18,7 +19,7 @@ SRC_URI="x86? ( http://http.download.nvidia.com/XFree86/Linux-x86/${PV}/${X86_NV
 
 LICENSE="GPL-2 NVIDIA-r1"
 SLOT="0/173"
-KEYWORDS="-* amd64 x86 ~x86-fbsd"
+KEYWORDS="-* ~amd64 ~x86 ~x86-fbsd"
 IUSE="acpi multilib kernel_linux tools"
 RESTRICT="bindist mirror strip"
 EMULTILIB_PKG="true"
@@ -34,18 +35,18 @@ DEPEND="
 RDEPEND="
 	${COMMON}
 	<x11-base/xorg-server-1.15.99:=
-	sys-libs/zlib
-	>=x11-libs/libX11-1.6.2
-	>=x11-libs/libXext-1.3.2
+	sys-libs/zlib[${MULTILIB_USEDEP}]
+	>=x11-libs/libX11-1.6.2[${MULTILIB_USEDEP}]
+	>=x11-libs/libXext-1.3.2[${MULTILIB_USEDEP}]
 	acpi? ( sys-power/acpid )
 	tools? (
-		dev-libs/atk
-		dev-libs/glib:2
-		x11-libs/gdk-pixbuf[X]
-		x11-libs/gtk+:2
-		x11-libs/libX11
-		x11-libs/libXext
-		x11-libs/pango[X]
+		dev-libs/atk[${MULTILIB_USEDEP}]
+		dev-libs/glib:2[${MULTILIB_USEDEP}]
+		x11-libs/gdk-pixbuf[${MULTILIB_USEDEP}]
+		x11-libs/gtk+:2[${MULTILIB_USEDEP}]
+		x11-libs/libX11[${MULTILIB_USEDEP}]
+		x11-libs/libXext[${MULTILIB_USEDEP}]
+		x11-libs/pango[X,${MULTILIB_USEDEP}]
 	)
 "
 
