@@ -70,7 +70,7 @@ REQUIRED_USE="
 	video_cards_radeonsi?   ( gallium llvm )
 	video_cards_vc4? ( gallium )
 	video_cards_virgl? ( gallium )
-	video_cards_vivante? ( gallium gbm )
+	video_cards_vivante? ( gallium )
 	video_cards_vmware? ( gallium )
 "
 
@@ -277,7 +277,7 @@ multilib_src_configure() {
 				"
 		fi
 		
-		# FL-3269: add virgl support
+		# FL-3269: add virgl support in mesa
 		gallium_enable video_cards_virgl virgl
 	fi
 
