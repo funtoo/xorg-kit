@@ -9,7 +9,7 @@ inherit xorg-2
 
 DESCRIPTION="X.Org Xfont library"
 
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 ~s390 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 ipv6 truetype"
 
 RDEPEND="x11-libs/xtrans
@@ -17,8 +17,7 @@ RDEPEND="x11-libs/xtrans
 	truetype? ( >=media-libs/freetype-2 )
 	bzip2? ( app-arch/bzip2 )
 	x11-proto/xproto
-	>=x11-proto/fontsproto-2.1.3
-	!<x11-base/xorg-server-1.5.99.901"
+	>=x11-proto/fontsproto-2.1.3"
 DEPEND="${RDEPEND}"
 
 src_configure() {
