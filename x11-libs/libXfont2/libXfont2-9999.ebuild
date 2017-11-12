@@ -1,10 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 EAPI=5
 
 XORG_DOC=doc
-EGIT_REPO_URI="https://anongit.freedesktop.org/git/xorg/lib/libXfont.git"
+EGIT_REPO_URI="git://anongit.freedesktop.org/xorg/lib/libXfont"
 inherit xorg-2
 
 DESCRIPTION="X.Org Xfont library"
@@ -14,7 +15,6 @@ IUSE="bzip2 ipv6 truetype"
 
 RDEPEND="x11-libs/xtrans
 	x11-libs/libfontenc
-	sys-libs/zlib
 	truetype? ( >=media-libs/freetype-2 )
 	bzip2? ( app-arch/bzip2 )
 	x11-proto/xproto
