@@ -27,7 +27,10 @@ DEPEND="${PYTHON_DEPS}
 	wayland? ( dev-libs/wayland:=[${MULTILIB_USEDEP}] )
 	X? ( x11-libs/libX11:=[${MULTILIB_USEDEP}] )"
 
-PATCHES=( "${FILESDIR}"/${P}-remove-executable-stack.patch )
+src_prepare() {
+	default
+	eapply "${FILESDIR}"/${P}-remove-executable-stack.patch
+}
 
 multilib_src_configure() {
 	local mycmakeargs=(

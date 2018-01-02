@@ -31,9 +31,9 @@ else
 fi
 IUSE="+drm wayland X"
 
-RDEPEND=">=x11-libs/libva-2.0.0:=[X?,wayland?,drm?,${MULTILIB_USEDEP}]
-	>=x11-libs/libdrm-2.4.52[video_cards_intel,${MULTILIB_USEDEP}]
-	wayland? ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] >=dev-libs/wayland-1.11[${MULTILIB_USEDEP}] )"
+RDEPEND=">=x11-libs/libva-1.8.0[X?,wayland?,drm?,${MULTILIB_USEDEP}]
+	>=x11-libs/libdrm-2.4.46[video_cards_intel,${MULTILIB_USEDEP}]
+	wayland? ( >=media-libs/mesa-9.1.6[egl,${MULTILIB_USEDEP}] >=dev-libs/wayland-1.0.6[${MULTILIB_USEDEP}] )"
 
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
