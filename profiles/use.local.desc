@@ -38,6 +38,9 @@ media-libs/mesa:vulkan - Enable Vulkan drivers
 media-libs/mesa:wayland - Enable support for dev-libs/wayland
 media-libs/mesa:xa - Enable the XA (X Acceleration) API for Gallium3D.
 media-libs/mesa:xvmc - Enable the XvMC acceleration interface for the Gallium3D Video Layer.
+x11-apps/intel-gpu-tools:python - Install python based register dumper utilities
+x11-apps/intel-gpu-tools:test-programs - Install test programs for DRM driver development
+x11-apps/intel-gpu-tools:unwind - Provide automatic stack traces on test failures
 x11-apps/mesa-progs:egl - Build EGL utilities
 x11-apps/mesa-progs:gles2 - Build OpenGL ES 2 utilities
 x11-apps/xinit:minimal - Control dependencies on legacy apps (xterm, twm, ...). Safe to enable if you use a modern desktop environment.
@@ -65,11 +68,16 @@ x11-drivers/xf86-video-intel:xvmc - Enables X-Video Motion Compensation support
 x11-drivers/xf86-video-nouveau:glamor - Enable Glamor OpenGL 2D acceleration
 x11-drivers/xf86-video-openchrome:viaregtool - Install registers dumper tool
 x11-drivers/xf86-video-qxl:xspice - Build the xspice driver
+x11-libs/glamor:gles - Build glamor based on gles2
 x11-libs/libXfont:bzip2 - Support bzip2 compressed PCF fonts.
 x11-libs/libXfont:truetype - Use media-libs/freetype for font rasterization.
 x11-libs/libXfont2:bzip2 - Support bzip2 compressed PCF fonts.
 x11-libs/libXfont2:truetype - Use media-libs/freetype for font rasterization.
+x11-libs/libdrm:libkms - Enable building of libkms, a library for applications to interface with KMS
+x11-libs/libdrm:valgrind - Compile in valgrind memory hints
 x11-libs/libva:drm - Enables VA/DRM API support.
 x11-libs/libva:egl - Enables EGL support.
 x11-libs/libva-intel-driver:drm - Enables VA/DRM API support.
+x11-libs/libxcb:xkb - Enable the XCB keyboard extension
+x11-libs/pixman:loongson2f - Enable Loongson2f MMI optimizations.
 x11-misc/bumblebee:bbswitch - Add dependency on sys-power/bbswitch for PM feature

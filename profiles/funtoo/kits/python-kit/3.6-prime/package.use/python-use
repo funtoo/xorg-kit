@@ -1,2 +1,4 @@
+x11-apps/intel-gpu-tools python_single_target_python3_4 python_targets_python3_4
 x11-drivers/xf86-video-qxl python_single_target_python2_7
 x11-drivers/xf86-video-virtualbox python_single_target_python2_7
+x11-libs/libxcb python_single_target_python2_7
