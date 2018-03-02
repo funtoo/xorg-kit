@@ -1,5 +1,6 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Id$
 
 # @ECLASS: libtool.eclass
 # @MAINTAINER:
@@ -16,10 +17,18 @@
 if [[ -z ${_LIBTOOL_ECLASS} ]]; then
 _LIBTOOL_ECLASS=1
 
-DEPEND=">=app-portage/elt-patches-20170317"
-
+# If an overlay has eclass overrides, but doesn't actually override the
+# libtool.eclass, we'll have ECLASSDIR pointing to the active overlay's
+# eclass/ dir, but libtool.eclass is still in the main Gentoo tree.  So
+# add a check to locate the ELT-patches/ regardless of what's going on.
+# Note: Duplicated in eutils.eclass.
+_LIBTOOL_ECLASSDIR_LOCAL=${BASH_SOURCE[0]%/*}
 libtool_elt_patch_dir() {
-	echo "${EPREFIX}/usr/share/elt-patches"
+	local d="${ECLASSDIR}/ELT-patches"
+	if [[ ! -d ${d} ]] ; then
+		d="${_LIBTOOL_ECLASSDIR_LOCAL}/ELT-patches"
+	fi
+	echo "${d}"
 }
 
 inherit multilib toolchain-funcs
@@ -135,7 +144,7 @@ elibtoolize() {
 	local deptoremove=
 	local do_shallow="no"
 	local force="false"
-	local elt_patches="install-sh ltmain portage relink max_cmd_len sed test tmp cross as-needed target-nm ppc64le"
+	local elt_patches="install-sh ltmain portage relink max_cmd_len sed test tmp cross as-needed target-nm"
 
 	for x in "$@" ; do
 		case ${x} in
@@ -405,10 +414,6 @@ elibtoolize() {
 					ret=$?
 					;;
 				target-nm)
-					ELT_walk_patches "${d}/configure" "${p}"
-					ret=$?
-					;;
-				ppc64le)
 					ELT_walk_patches "${d}/configure" "${p}"
 					ret=$?
 					;;
