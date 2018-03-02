@@ -20,7 +20,8 @@ _EUTILS_ECLASS=1
 # implicitly inherited (now split) eclasses
 case ${EAPI:-0} in
 0|1|2|3|4|5|6)
-	inherit epatch estack ltprune multilib toolchain-funcs
+	# note: we want to remove epunt-cxx retroactively for #566424
+	inherit epatch epunt-cxx estack ltprune multilib toolchain-funcs
 	;;
 esac
 
@@ -274,11 +275,13 @@ make_desktop_entry() {
 	# Don't append another ";" when a valid category value is provided.
 	type=${type%;}${type:+;}
 
+	eshopts_push -s extglob
 	if [[ -n ${icon} && ${icon} != /* ]] && [[ ${icon} == *.xpm || ${icon} == *.png || ${icon} == *.svg ]]; then
 		ewarn "As described in the Icon Theme Specification, icon file extensions are not"
 		ewarn "allowed in .desktop files if the value is not an absolute path."
-		icon=${icon%.*}
+		icon=${icon%.@(xpm|png|svg)}
 	fi
+	eshopts_pop
 
 	cat <<-EOF > "${desktop}"
 	[Desktop Entry]
