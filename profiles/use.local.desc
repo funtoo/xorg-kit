@@ -43,11 +43,7 @@ x11-apps/intel-gpu-tools:test-programs - Install test programs for DRM driver de
 x11-apps/intel-gpu-tools:unwind - Provide automatic stack traces on test failures
 x11-apps/mesa-progs:egl - Build EGL utilities
 x11-apps/mesa-progs:gles2 - Build OpenGL ES 2 utilities
-x11-apps/xdm:consolekit - Enable native sys-auth/consolekit support
-x11-apps/xdm:xdm-auth - Enable XDM-AUTHENTICATION-1 support
-x11-apps/xdpyinfo:dmx - Builds support for Distributed Multiheaded X x11-base/xorg-server
 x11-apps/xinit:minimal - Control dependencies on legacy apps (xterm, twm, ...). Safe to enable if you use a modern desktop environment.
-x11-apps/xsm:rsh - This allows the use of rsh (remote shell) and rcp (remote copy).
 x11-base/xorg-server:dmx - Build the Distributed Multiheaded X server
 x11-base/xorg-server:glamor - Enable Glamor OpenGL 2D acceleration
 x11-base/xorg-server:kdrive - Build the kdrive X servers
@@ -68,8 +64,6 @@ x11-drivers/xf86-video-intel:uxa - Enable UMA Acceleration Architecture
 x11-drivers/xf86-video-intel:xvmc - Enables X-Video Motion Compensation support
 x11-drivers/xf86-video-openchrome:viaregtool - Install registers dumper tool
 x11-drivers/xf86-video-qxl:xspice - Build the xspice driver
-x11-libs/libSM:uuid - Use UUID for session identification instead of IP address and system time.
-x11-libs/libXaw:deprecated - Install deprecated Xaw6 library.
 x11-libs/libXfont:bzip2 - Support bzip2 compressed PCF fonts.
 x11-libs/libXfont:truetype - Use media-libs/freetype for font rasterization.
 x11-libs/libXfont2:bzip2 - Support bzip2 compressed PCF fonts.
