@@ -1,4 +1,3 @@
-# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -15,6 +14,10 @@ RDEPEND=">=x11-libs/libXrender-0.9.8[${MULTILIB_USEDEP}]
 	>=x11-libs/libXfixes-5.0.1[${MULTILIB_USEDEP}]
 	>=x11-libs/libX11-1.6.2[${MULTILIB_USEDEP}]"
 DEPEND="${RDEPEND}"
+
+src_prepare() {
+	epatch "${FILESDIR}"/CVE-2017-16612.patch
+}
 
 XORG_CONFIGURE_OPTIONS=(
 	--with-icondir=/usr/share/cursors/xorg-x11
