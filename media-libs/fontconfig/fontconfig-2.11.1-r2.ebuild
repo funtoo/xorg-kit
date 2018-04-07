@@ -47,6 +47,16 @@ pkg_setup() {
 	delete the directory ${EROOT}etc/fonts/conf.d/ and re-emerge fontconfig."
 }
 
+src_prepare() {
+	epatch "${PATCHES[@]}"
+	
+	# glibc-2.26 fix
+	if has_version ">=sys-libs/glibc-2.26"; then
+		epatch "${FILESDIR}"/${PN}-glibc-2.26.patch
+	fi
+eautoreconf
+}
+
 src_configure() {
 	local addfonts
 	# harvest some font locations, such that users can benefit from the
