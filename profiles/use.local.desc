@@ -39,6 +39,8 @@ media-libs/mesa:vulkan - Enable Vulkan drivers
 media-libs/mesa:wayland - Enable support for dev-libs/wayland
 media-libs/mesa:xa - Enable the XA (X Acceleration) API for Gallium3D.
 media-libs/mesa:xvmc - Enable the XvMC acceleration interface for the Gallium3D Video Layer.
+media-libs/vulkan-loader:demos - Build vulkan demos and vulkaninfo
+media-libs/vulkan-loader:layers - Build the vulkan layers
 x11-apps/intel-gpu-tools:test-programs - Install test programs for DRM driver development
 x11-apps/intel-gpu-tools:unwind - Provide automatic stack traces on test failures
 x11-apps/mesa-progs:egl - Build EGL utilities
