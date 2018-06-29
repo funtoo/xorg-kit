@@ -1,46 +1,71 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
-inherit eutils multilib readme.gentoo systemd user
+EAPI=6
+
+inherit autotools multilib readme.gentoo-r1 systemd user
+
+if [[ ${PV} == 9999 ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/Bumblebee-Project/Bumblebee.git"
+	EGIT_BRANCH="develop"
+	KEYWORDS=""
+else
+	COMMIT="c322bd849aabe6e48b4304b8d13cc4aadc36a30d"
+	SRC_URI="https://github.com/Bumblebee-Project/Bumblebee/archive/${COMMIT}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64 ~x86"
+
+	S="${WORKDIR}/Bumblebee-${COMMIT}"
+fi
 
 DESCRIPTION="Service providing elegant and stable means of managing Optimus graphics chipsets"
 HOMEPAGE="https://bumblebee-project.org https://github.com/Bumblebee-Project/Bumblebee"
-SRC_URI="https://bumblebee-project.org/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="GPL-3"
-KEYWORDS="amd64 x86"
 
 IUSE="+bbswitch video_cards_nouveau video_cards_nvidia"
 
-RDEPEND="
+COMMON_DEPEND="
+	dev-libs/glib:2
 	dev-libs/libbsd
+	sys-apps/kmod
+	x11-libs/libX11
+"
+
+RDEPEND="${COMMON_DEPEND}
 	virtual/opengl
 	x11-base/xorg-drivers[video_cards_nvidia?,video_cards_nouveau?]
-	x11-misc/virtualgl:=
 	bbswitch? ( sys-power/bbswitch )
 "
-DEPEND="${RDEPEND}
-	dev-libs/glib:2
+
+DEPEND="${COMMON_DEPEND}
 	sys-apps/help2man
 	virtual/pkgconfig
-	x11-libs/libX11
+"
+
+PDEPEND="
+	|| (
+		x11-misc/primus
+		x11-misc/virtualgl
+	)
 "
 
 REQUIRED_USE="|| ( video_cards_nouveau video_cards_nvidia )"
 
+pkg_setup() {
+	enewgroup bumblebee
+}
+
 src_prepare() {
-	epatch_user
+	default
+	eautoreconf
 }
 
 src_configure() {
-	DOC_CONTENTS="In order to use Bumblebee, add your user to 'bumblebee' group.
-		You may need to setup your /etc/bumblebee/bumblebee.conf"
-
 	if use video_cards_nvidia ; then
 		# Get paths to GL libs for all ABIs
-		local nvlib=""
+		local i nvlib=""
 		for i in  $(get_all_libdirs) ; do
 			nvlib="${nvlib}:/usr/${i}/opengl/nvidia/lib"
 		done
@@ -53,24 +78,18 @@ src_configure() {
 	fi
 
 	econf \
-		--docdir=/usr/share/doc/"${PF}" \
 		${ECONF_PARAMS}
 }
 
 src_install() {
-	newconfd "${FILESDIR}"/bumblebee.confd bumblebee
-	newinitd "${FILESDIR}"/bumblebee.initd bumblebee
-	newenvd  "${FILESDIR}"/bumblebee.envd 99bumblebee
+	default
+
+	newconfd "${FILESDIR}"/${PN}.confd ${PN}
+	newinitd "${FILESDIR}"/${PN}.initd ${PN}
+	newenvd "${FILESDIR}"/${PN}.envd 99${PN}
 	systemd_dounit scripts/systemd/bumblebeed.service
 
+	local DOC_CONTENTS="In order to use Bumblebee, add your user to 'bumblebee' group.
+		You may need to setup your /etc/bumblebee/bumblebee.conf"
 	readme.gentoo_create_doc
-
-	default
-}
-
-pkg_preinst() {
-	use video_cards_nvidia || rm "${ED}"/etc/bumblebee/xorg.conf.nvidia
-	use video_cards_nouveau || rm "${ED}"/etc/bumblebee/xorg.conf.nouveau
-
-	enewgroup bumblebee
 }
