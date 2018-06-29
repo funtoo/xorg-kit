@@ -2,16 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<email>NP-Hardass@gentoo.org</email>
-		<name>NP-Hardass</name>
-	</maintainer>
-	<maintainer type="person">
-		<email>rei4dan@gmail.com</email>
-		<name>My Th</name>
-	</maintainer>
-	<maintainer type="project">
-		<email>proxy-maint@gentoo.org</email>
-		<name>Proxy Maintainers</name>
+		<email>liaotao@wayoftao.net</email>
+		<name>LiaoTao</name>
 	</maintainer>
 	<longdescription>
 	A rewrite of the original Bumblebee service, providing an elegant and stable
