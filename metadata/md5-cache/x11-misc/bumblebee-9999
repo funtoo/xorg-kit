@@ -9,5 +9,5 @@ PDEPEND=|| ( x11-misc/primus x11-misc/virtualgl )
 RDEPEND=dev-libs/glib:2 dev-libs/libbsd sys-apps/kmod x11-libs/libX11 virtual/opengl x11-base/xorg-drivers[video_cards_nvidia?,video_cards_nouveau?] bbswitch? ( sys-power/bbswitch )
 REQUIRED_USE=|| ( video_cards_nouveau video_cards_nvidia )
 SLOT=0
-_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	git-r3	fec09a83ae965b041b47f5ff7c8ba29a	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	readme.gentoo-r1	6f03e110529650f57fc7d1fb908b8986	systemd	8f5286f89e265842f5b5189666eae88b	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	user	8bc2845510e2109af75e3eeac607ec81
+_eclasses_=autotools	dc412f38566b91012efd58b9c203e6c3	git-r3	18aed4252aebae08e3db185e684ee37c	libtool	e32ea84bf82cf8987965b574672dba93	multilib	97f470f374f2e94ccab04a2fb21d811e	readme.gentoo-r1	2b27b7fcc73685ec7e0456c3b48a2fff	systemd	1caaa6bdb6e41b2920a203d6b45f2f99	toolchain-funcs	6eb35f81556258a4bc9182ad3dfd58ee	user	8bc2845510e2109af75e3eeac607ec81
 _md5_=03092d8adb461eca5ec2f3b4fe793ca6
