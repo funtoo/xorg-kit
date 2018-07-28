@@ -31,7 +31,7 @@ RDEPEND="${RDEPEND}
 	x11-apps/smproxy
 	x11-apps/x11perf
 	x11-apps/xauth
-	x11-apps/xbacklight
+	virtual/backlight
 	x11-apps/xcmsdb
 	x11-apps/xcursorgen
 	x11-apps/xdpyinfo
