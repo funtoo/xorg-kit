@@ -10,7 +10,7 @@ HOMEPAGE="https://www.x.org/wiki/"
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~arm64 hppa ia64 ~mips ppc ppc64 sh sparc x86 ~amd64-fbsd ~x86-fbsd"
+KEYWORDS="*"
 IUSE=""
 
 # Server
@@ -30,7 +30,7 @@ RDEPEND="${RDEPEND}
 	x11-apps/smproxy
 	x11-apps/x11perf
 	x11-apps/xauth
-	x11-apps/xbacklight
+	virtual/backlight
 	x11-apps/xcmsdb
 	x11-apps/xcursorgen
 	x11-apps/xdpyinfo

@@ -1,0 +1,8 @@
+DEFINED_PHASES=-
+DESCRIPTION=A virtual for backlight ebuilds.
+EAPI=6
+IUSE=acpi
+KEYWORDS=*
+RDEPEND=acpi? ( sys-power/acpilight ) !acpi? ( x11-apps/xbacklight )
+SLOT=0
+_md5_=339556847445b7325caee0bdcdc30146
