@@ -1,4 +1,3 @@
-# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -7,14 +6,10 @@ XORG_DRI=dri
 XORG_EAUTORECONF=yes
 inherit linux-info xorg-2 flag-o-matic
 
-if [[ ${PV} == 9999* ]]; then
-	SRC_URI=""
-else
-	KEYWORDS="~amd64 ~x86"
-	COMMIT_ID=""
-	SRC_URI="https://cgit.freedesktop.org/xorg/driver/xf86-video-intel/snapshot/${COMMIT_ID}.tar.xz -> ${P}.tar.xz"
-	S=${WORKDIR}/${COMMIT_ID}
-fi
+KEYWORDS="x86 amd64"
+COMMIT_ID="3d395062ce73f85e8340218df01c2ebf4bc25023"
+SRC_URI="https://cgit.freedesktop.org/xorg/driver/xf86-video-intel/snapshot/${COMMIT_ID}.tar.xz -> ${P}.tar.xz"
+S=${WORKDIR}/${COMMIT_ID}
 
 DESCRIPTION="X.Org driver for Intel cards"
 
