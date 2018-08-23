@@ -1,29 +1,21 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
-# bogus commit to force manifest regeneration #596462
-
 XORG_DOC=doc
-# needs automake-1.14 without eautoreconf
 XORG_EAUTORECONF=yes
 XORG_MULTILIB=yes
 inherit xorg-2 toolchain-funcs
 
 DESCRIPTION="X.Org X11 library"
 
-KEYWORDS="alpha amd64 arm ~arm64 hppa ~ia64 ~mips ~ppc ppc64 ~s390 ~sh ~sparc x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~alpha amd64 ~arm arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh sparc x86 ~ppc-aix ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="ipv6 test"
 
-RDEPEND=">=x11-libs/libxcb-1.11.1[${MULTILIB_USEDEP}]
-	x11-libs/xtrans
-	>=x11-proto/xproto-7.0.24[${MULTILIB_USEDEP}]
-	>=x11-proto/xf86bigfontproto-1.2.0-r1[${MULTILIB_USEDEP}]
-	>=x11-proto/inputproto-2.3[${MULTILIB_USEDEP}]
-	>=x11-proto/kbproto-1.0.6-r1[${MULTILIB_USEDEP}]
-	>=x11-proto/xextproto-7.2.1-r1[${MULTILIB_USEDEP}]"
+RDEPEND="x11-base/xorg-proto
+	>=x11-libs/libxcb-1.11.1[${MULTILIB_USEDEP}]
+	x11-libs/xtrans"
 DEPEND="${RDEPEND}
 	test? ( dev-lang/perl )"
 
