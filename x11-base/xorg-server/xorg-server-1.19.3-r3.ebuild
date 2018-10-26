@@ -135,9 +135,9 @@ REQUIRED_USE="!minimal? (
 	)
 	xephyr? ( kdrive )"
 
-#UPSTREAMED_PATCHES=(
-#	"${WORKDIR}/patches/"
-#)
+UPSTREAMED_PATCHES=(
+	"${FILESDIR}/1.19/CVE-backports/"
+)
 
 PATCHES=(
 	"${UPSTREAMED_PATCHES[@]}"
@@ -145,6 +145,7 @@ PATCHES=(
 	# needed for new eselect-opengl, bug #541232
 	"${FILESDIR}"/${PN}-1.18-support-multiple-Files-sections.patch
 	"${FILESDIR}"/${PN}-1.18-sysmacros.patch #580044
+	"${FILESDIR}"/${PN}-CVE-2018-14665.patch # FL-5777.
 )
 
 pkg_pretend() {
