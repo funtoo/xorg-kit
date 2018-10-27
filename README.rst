@@ -25,6 +25,12 @@ that you can rely on to be stable and perform consistently over an extended peri
 Security Fixes
 --------------
 
+October 26, 2018
+~~~~~~~~~~~~~~~~
+
+- ``x11-base/xorg-server`` has been updated to 1.19.3-r3 to address CVE-2018-14665.
+
+
 August 23, 2018
 ~~~~~~~~~~~~~~
 
