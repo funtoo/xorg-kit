@@ -25,6 +25,11 @@ that you can rely on to be stable and perform consistently over an extended peri
 Security Fixes
 --------------
 
+November 4, 2018
+~~~~~~~~~~~~~~~~
+
+- ``x11-libs/libxkbcommon`` has been updated to 0.7.2-r1 to adress CVE-2018-15853-59, CVE-2018-15861, CVE-2018-15862, CVE-2018-15863 and CVE-2018-15864.
+
 October 26, 2018
 ~~~~~~~~~~~~~~~~
 
