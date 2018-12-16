@@ -51,13 +51,16 @@ depend() {
 	after quota keymaps
 	before alsasound
 
+	# Funtoo tweak
+	case ${DISPLAYMANAGER} in
+		gdm|gnome)
+			need dbus
+			;;
+	esac
+
 	# Start before X
 	use consolekit dbus xfs
 
-	# Funtoo tweak:
-	if [[ $MY_XDM = "gdm" || $MY_XDM = "gnome" ]]; then
-		need dbus
-	fi
 }
 
 setup_dm() {
