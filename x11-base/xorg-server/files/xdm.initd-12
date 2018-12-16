@@ -53,17 +53,17 @@ depend() {
 
 	# Start before X
 	use consolekit dbus xfs
+
+	# Funtoo tweak:
+	if [[ $MY_XDM = "gdm" || $MY_XDM = "gnome" ]]; then
+		need dbus
+	fi
 }
 
 setup_dm() {
 	local MY_XDM
 	
 	MY_XDM=$(echo "${DISPLAYMANAGER}" | tr '[:upper:]' '[:lower:]')
-	
-	# Funtoo tweak:
-	if [[ $MY_XDM = "gdm" || $MY_XDM = "gnome" ]]; then
-		need dbus
-	fi
 
 	# Load our root path from profile.env
 	# Needed for kdm
