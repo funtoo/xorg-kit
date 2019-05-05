@@ -56,6 +56,9 @@ depend() {
 		gdm|gnome)
 			need dbus elogind
 			;;
+		lightdm)
+			need dbus
+			;;
 	esac
 
 	# Start before X
