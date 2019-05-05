@@ -54,6 +54,9 @@ depend() {
 	# Funtoo tweak
 	case ${DISPLAYMANAGER} in
 		gdm|gnome)
+			need dbus elogind
+			;;
+		lightdm)
 			need dbus
 			;;
 	esac
