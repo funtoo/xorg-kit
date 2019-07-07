@@ -134,8 +134,11 @@ pkg_setup() {
 src_prepare() {
 	default
 	# when using libglvnd, pkgconfig will install its gl stuff, so explicitly use mesa's pkgconfig (19.1+)
-	use glvnd && sed -i -e 's/gl >=/mesa-gl >=/g' ${S}/configure || die
+	if use glvnd; then
+		sed -i -e 's/gl >=/mesa-gl >=/g' ${S}/configure || die
+	fi
 }
+
 src_configure() {
 	# localstatedir is used for the log location; we need to override the default
 	#	from ebuild.sh
