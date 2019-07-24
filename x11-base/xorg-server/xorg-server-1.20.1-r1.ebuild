@@ -48,6 +48,9 @@ CDEPEND=">=app-eselect/eselect-opengl-1.3.0
 		>=x11-libs/libXres-1.0.3
 		>=x11-libs/libXtst-1.0.99.2
 	)
+	glvnd? (
+		>=media-libs/mesa-19.1.0-r1
+	)
 	glamor? (
 		media-libs/libepoxy[X]
 		>=media-libs/mesa-18[egl,gbm]
