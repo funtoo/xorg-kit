@@ -46,6 +46,7 @@ IUSE_VIDEO_CARDS="
 	video_cards_gallium-radeonsi
 	video_cards_siliconmotion
 	video_cards_tdfx
+	video_cards_tegra
 	video_cards_gallium-tegra
 	video_cards_vc4
 	video_cards_vesa
