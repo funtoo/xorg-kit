@@ -9,7 +9,7 @@ SRC_URI=""
 
 LICENSE="metapackage"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~x86-linux"
+KEYWORDS="*"
 
 IUSE_INPUT_DEVICES="
 	input_devices_elographics
@@ -43,9 +43,10 @@ IUSE_VIDEO_CARDS="
 	video_cards_r128
 	video_cards_radeon
 	video_cards_radeonsi
+	video_cards_gallium-radeonsi
 	video_cards_siliconmotion
 	video_cards_tdfx
-	video_cards_tegra
+	video_cards_gallium-tegra
 	video_cards_vc4
 	video_cards_vesa
 	video_cards_via
@@ -88,9 +89,11 @@ PDEPEND="
 	video_cards_nvidia?        ( x11-drivers/nvidia-drivers )
 	video_cards_r128?          ( >=x11-drivers/xf86-video-r128-6.10.2 )
 	video_cards_radeon?        ( >=x11-drivers/xf86-video-ati-18.0.1-r1 )
+	video_cards_gallium-radeonsi? ( >=x11-drivers/xf86-video-ati-18.0.1-r1[glamor] )
 	video_cards_radeonsi?      ( >=x11-drivers/xf86-video-ati-18.0.1-r1[glamor] )
 	video_cards_siliconmotion? ( >=x11-drivers/xf86-video-siliconmotion-1.7.9 )
 	video_cards_tdfx?          ( >=x11-drivers/xf86-video-tdfx-1.4.7 )
+	video_cards_gallium-tegra? ( >=x11-base/xorg-server-${PV}[glamor] )
 	video_cards_tegra?         ( >=x11-base/xorg-server-${PV}[glamor] )
 	video_cards_vc4?           ( >=x11-base/xorg-server-${PV}[glamor] )
 	video_cards_vesa?          ( x11-drivers/xf86-video-vesa )
