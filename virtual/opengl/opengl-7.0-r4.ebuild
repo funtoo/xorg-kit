@@ -1,9 +1,6 @@
-# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-
-inherit multilib-build
+EAPI=7
 
 DESCRIPTION="Virtual for OpenGL implementation"
 SLOT="0"
@@ -12,6 +9,9 @@ IUSE="glvnd"
 
 RDEPEND="
 	|| (
-		glvnd? ( media-libs/libglvnd )
+		glvnd? (
+			media-libs/mesa-gl-headers 
+			media-libs/libglvnd 
+		)
 		!glvnd? ( >=media-libs/mesa-9.1.6 )
 	)"
