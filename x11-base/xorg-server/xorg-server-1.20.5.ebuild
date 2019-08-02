@@ -97,7 +97,11 @@ DEPEND="${CDEPEND}
 				www-client/w3m
 			)
 		)
-	)"
+	)
+	glvnd? (
+		media-libs/mesa-gl-headers
+	)
+	"
 
 RDEPEND="${CDEPEND}
 	selinux? ( sec-policy/selinux-xserver )
