@@ -2,6 +2,8 @@
 
 EAPI=7
 
+inherit multilib-build
+
 DESCRIPTION="Virtual for OpenGL implementation"
 SLOT="0"
 KEYWORDS="*"
