@@ -1,12 +1,12 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 inherit font
 
-SANSV="2.010R-ro/1.065R-it"
-SERIFV="1.017R"
-CODEV="1.017R"
+SANSV="3.006R"
+SERIFV="3.001R"
+CODEV="2.030R-ro/1.050R-it"
 
 DESCRIPTION="Adobe's open source typeface family designed for UI environments"
 HOMEPAGE="https://adobe-fonts.github.io/source-sans-pro/
@@ -18,7 +18,7 @@ SRC_URI="https://github.com/adobe-fonts/source-sans-pro/archive/${SANSV}.tar.gz 
 
 LICENSE="OFL-1.1"
 SLOT="0"
-KEYWORDS="alpha amd64 arm ~arm64 ia64 ppc ppc64 ~sh sparc x86 ~x86-fbsd ~x64-macos"
+KEYWORDS="*"
 IUSE="cjk"
 
 RDEPEND="media-libs/fontconfig
@@ -31,12 +31,13 @@ FONT_CONF=( "${FILESDIR}"/63-${PN}.conf )
 RESTRICT="binchecks strip"
 
 src_prepare() {
+	default
 	mv source-*/OTF/*.otf . || die
 }
 
 src_install() {
 	font_src_install
-	for d in source-sans-pro-${SANSV/\//-} source-serif-pro-${SERIFV} source-code-pro-${CODEV}; do
-		dohtml ${d}/*.html
+	for d in source-sans-pro-${SANSV/\//-} source-serif-pro-${SERIFV} source-code-pro-${CODEV/\//-}; do
+		newdoc ${d}/README.md README-${d}.md
 	done
 }
