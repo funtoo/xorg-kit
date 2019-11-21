@@ -15,7 +15,7 @@ if [[ ${PV} == 9999* ]] ; then
 	inherit autotools git-r3
 else
 	SRC_URI="https://www.freedesktop.org/software/libevdev/${P}.tar.xz"
-	KEYWORDS=""
+	KEYWORDS="*"
 fi
 
 LICENSE="MIT"
