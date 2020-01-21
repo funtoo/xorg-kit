@@ -1,15 +1,8 @@
-# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
-if [[ ${PV} = *9999* ]]; then
-	EGIT_REPO_URI="https://gitlab.freedesktop.org/wayland/wayland.git"
-	inherit git-r3
-else
-	SRC_URI="https://wayland.freedesktop.org/releases/${P}.tar.xz"
-	KEYWORDS="alpha amd64 arm arm64 hppa ia64 ~m68k ~mips ppc ppc64 s390 ~sh sparc x86"
-fi
+SRC_URI="https://wayland.freedesktop.org/releases/${P}.tar.xz"
 
 inherit autotools libtool toolchain-funcs out-of-source
 
@@ -30,9 +23,9 @@ BDEPEND="
 	)
 "
 DEPEND="
-	>=dev-libs/expat-2.1.0-r3:=[${MULTILIB_USEDEP}]
+	>=dev-libs/expat-2.1.0-r3:=
 	dev-libs/libxml2:=
-	>=virtual/libffi-3.0.13-r1:=[${MULTILIB_USEDEP}]
+	>=virtual/libffi-3.0.13-r1:=
 "
 RDEPEND="${DEPEND}
 	!<media-libs/mesa-18.1.1-r1
