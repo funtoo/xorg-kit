@@ -39,11 +39,10 @@ src_prepare() {
 my_src_configure() {
 	local myeconfargs=(
 		--disable-static
-		$(multilib_native_use_enable doc documentation)
-		$(multilib_native_enable dtd-validation)
+		$(use_enable doc documentation)
+		$(use_enable doc dtd-validation)
 	)
 	tc-is-cross-compiler && myeconfargs+=( --with-host-scanner )
-
 	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 }
 
