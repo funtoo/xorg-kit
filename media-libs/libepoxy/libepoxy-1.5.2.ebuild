@@ -29,6 +29,7 @@ IUSE="test +X"
 RDEPEND="media-libs/mesa[egl,${MULTILIB_USEDEP}]"
 DEPEND="${PYTHON_DEPS}
 	${RDEPEND}
+	media-libs/mesa-gl-headers
 	X? ( x11-libs/libX11[${MULTILIB_USEDEP}] )
 	virtual/pkgconfig"
 
