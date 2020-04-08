@@ -6,7 +6,7 @@ inherit xorg-2
 
 DESCRIPTION="AMD Geode GX2 and LX video driver"
 
-KEYWORDS="x86"
+KEYWORDS="*"
 IUSE="ztv"
 
 RDEPEND=""

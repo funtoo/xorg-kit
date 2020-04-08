@@ -6,7 +6,7 @@ EAPI=5
 inherit xorg-2
 
 DESCRIPTION="X standard colormap utility"
-KEYWORDS="amd64 arm hppa ~mips ppc ppc64 ~s390 ~sh ~sparc x86"
+KEYWORDS="*"
 IUSE=""
 RDEPEND="x11-libs/libXmu
 	x11-libs/libX11"

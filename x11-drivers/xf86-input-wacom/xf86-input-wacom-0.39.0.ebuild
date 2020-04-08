@@ -13,7 +13,7 @@ EGIT_REPO_URI="git://git.code.sf.net/p/linuxwacom/${PN}"
 	SRC_URI="https://github.com/linuxwacom/${PN}/releases/download/${P}/${P}.tar.bz2"
 
 
-KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sparc x86"
+KEYWORDS="*"
 IUSE="debug"
 
 RDEPEND="dev-libs/libwacom

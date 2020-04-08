@@ -8,12 +8,11 @@ inherit linux-info xorg-2
 
 if [[ ${PV} == 9999* ]]; then
 	SRC_URI=""
-else
-	KEYWORDS="~alpha ~amd64 ~ia64 ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd"
 fi
 
 DESCRIPTION="ATI video driver"
 HOMEPAGE="https://www.x.org/wiki/ati/"
+KEYWORDS="*"
 
 IUSE="+glamor udev"
 

@@ -6,7 +6,7 @@ EAPI=5
 inherit xorg-2
 
 DESCRIPTION="plain text display program for the X Window System"
-KEYWORDS="amd64 arm hppa ~mips ppc ppc64 s390 sh ~sparc x86"
+KEYWORDS="*"
 IUSE=""
 
 RDEPEND="

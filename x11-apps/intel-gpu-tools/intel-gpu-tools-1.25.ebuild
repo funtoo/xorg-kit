@@ -11,7 +11,7 @@ DESCRIPTION="Intel GPU userland tools"
 
 HOMEPAGE="https://01.org/linuxgraphics https://cgit.freedesktop.org/xorg/app/intel-gpu-tools/"
 SRC_URI="https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/archive/igt-gpu-tools-${PV}/igt-gpu-tools-igt-gpu-tools-${PV}.tar.bz2"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="*"
 LICENSE="MIT"
 SLOT="0"
 IUSE="alsa chamelium doc glib gsl sound test-programs valgrind video_cards_amdgpu video_cards_intel video_cards_nouveau X xrandr xv"

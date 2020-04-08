@@ -23,11 +23,7 @@ fi
 
 LICENSE="MIT"
 SLOT="0/$(get_version_component_range 1)"
-if [ "${PV%9999}" = "${PV}" ] ; then
-	KEYWORDS="~amd64 ~arm64 ~x86 ~amd64-linux ~x86-linux"
-else
-	KEYWORDS=""
-fi
+KEYWORDS="*"
 IUSE="+drm opengl vdpau wayland X utils"
 
 VIDEO_CARDS="nvidia intel i965 nouveau"
