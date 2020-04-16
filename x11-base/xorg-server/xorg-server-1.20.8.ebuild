@@ -99,7 +99,7 @@ DEPEND="${CDEPEND}
 		)
 	)
 	glvnd? (
-		media-libs/mesa-gl-headers
+		>=media-libs/libglvnd-1.2.0
 	)
 	"
 
