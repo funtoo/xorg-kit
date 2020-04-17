@@ -98,9 +98,7 @@ DEPEND="${CDEPEND}
 			)
 		)
 	)
-	glvnd? (
-		>=media-libs/libglvnd-1.2.0
-	)
+	virtual/opengl
 	"
 
 RDEPEND="${CDEPEND}
