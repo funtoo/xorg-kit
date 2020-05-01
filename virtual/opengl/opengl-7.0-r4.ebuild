@@ -12,8 +12,7 @@ IUSE="glvnd"
 RDEPEND="
 	|| (
 		glvnd? (
-			media-libs/mesa-gl-headers 
-			media-libs/libglvnd 
+			>=media-libs/libglvnd-1.2.0
 		)
 		!glvnd? ( >=media-libs/mesa-9.1.6 )
 	)"

@@ -98,9 +98,7 @@ DEPEND="${CDEPEND}
 			)
 		)
 	)
-	glvnd? (
-		media-libs/mesa-gl-headers
-	)
+	virtual/opengl
 	"
 
 RDEPEND="${CDEPEND}
