@@ -1,19 +1,15 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-XORG_EAUTORECONF=yes
 XORG_DOC=doc
-inherit xorg-2 multilib versionator flag-o-matic
+inherit xorg-3 multilib flag-o-matic
 EGIT_REPO_URI="https://anongit.freedesktop.org/git/xorg/xserver.git"
 
 DESCRIPTION="X.Org X servers"
 SLOT="0/${PV}"
-if [[ ${PV} != 9999* ]]; then
-	KEYWORDS="*"
-fi
-
+KEYWORDS="*"
 IUSE_SERVERS="dmx kdrive wayland xephyr xnest xorg xvfb"
 IUSE="${IUSE_SERVERS} debug +glamor glvnd ipv6 libressl minimal selinux systemd +udev unwind xcsecurity"
 
@@ -49,7 +45,7 @@ CDEPEND=">=app-eselect/eselect-opengl-1.3.0
 		>=x11-libs/libXtst-1.0.99.2
 	)
 	glvnd? (
-		>=media-libs/mesa-19.1.0-r1
+		>=media-libs/mesa-19.1.0-r1[glvnd]
 	)
 	glamor? (
 		media-libs/libepoxy[X]
@@ -106,7 +102,7 @@ RDEPEND="${CDEPEND}
 	!x11-drivers/xf86-video-modesetting
 "
 
-PDEPEND=">=x11-base/xorg-drivers-$(get_version_component_range 1-2)"
+PDEPEND=">=x11-base/xorg-drivers-$(echo ${PV} | cut -d'.' -f1,2)"
 
 REQUIRED_USE="!minimal? (
 		|| ( ${IUSE_SERVERS} )
@@ -121,6 +117,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-1.12-unloadsubmodule.patch
 	# needed for new eselect-opengl, bug #541232
 	"${FILESDIR}"/${PN}-1.18-support-multiple-Files-sections.patch
+	"${FILESDIR}"/${PN}-1.20.8-rename-gc.patch
 )
 
 pkg_pretend() {
@@ -134,17 +131,7 @@ pkg_setup() {
 		ewarn "glamor is necessary for acceleration under Xwayland."
 		ewarn "Performance may be unacceptable without it."
 	fi
-}
 
-src_prepare() {
-	default
-	# when using libglvnd, pkgconfig will install its gl stuff, so explicitly use mesa's pkgconfig (19.1+)
-	if use glvnd; then
-		sed -i -e 's/gl >=/mesa-gl >=/g' ${S}/configure || die
-	fi
-}
-
-src_configure() {
 	# localstatedir is used for the log location; we need to override the default
 	#	from ebuild.sh
 	# sysconfdir is used for the xorg.conf location; same applies
@@ -187,19 +174,12 @@ src_configure() {
 		--with-os-vendor=Gentoo
 		--with-sha1=libcrypto
 	)
-
-	xorg-2_src_configure
 }
 
 src_install() {
-	xorg-2_src_install
+	xorg-3_src_install
 
 	server_based_install
-
-	if ! use minimal && use xorg; then
-		# Install xorg.conf.example into docs
-		dodoc "${AUTOTOOLS_BUILD_DIR}"/hw/xfree86/xorg.conf.example
-	fi
 
 	newinitd "${FILESDIR}"/xdm-setup.initd-1 xdm-setup
 	newinitd "${FILESDIR}"/xdm.initd-14 xdm

@@ -1,21 +1,18 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
-PYTHON_COMPAT=( python{2_7,3_4,3_5,3_6} )
+PYTHON_COMPAT=( python3+ )
 PYTHON_REQ_USE=xml
 
 XORG_DOC=doc
 XORG_MULTILIB=yes
-inherit python-any-r1 xorg-2
+inherit python-any-r1 xorg-3
 
 DESCRIPTION="X C-language Bindings library"
 HOMEPAGE="https://xcb.freedesktop.org/"
-EGIT_REPO_URI="https://anongit.freedesktop.org/git/xcb/libxcb.git"
-[[ ${PV} != 9999* ]] && \
-	SRC_URI="https://xcb.freedesktop.org/dist/${P}.tar.xz"
-
+SRC_URI="https://xcb.freedesktop.org/dist/${P}.tar.xz"
 KEYWORDS="*"
 IUSE="doc selinux test xkb"
 SLOT="0/1.12"
@@ -33,19 +30,16 @@ DEPEND="${RDEPEND}
 		">=x11-base/xcb-proto-1.13[${MULTILIB_USEDEP},\${PYTHON_USEDEP}]")"
 
 python_check_deps() {
-	has_version --host-root ">=x11-base/xcb-proto-1.13[${PYTHON_USEDEP}]"
+	has_version -b ">=x11-base/xcb-proto-1.13[${PYTHON_USEDEP}]"
 }
 
 pkg_setup() {
 	python-any-r1_pkg_setup
-}
 
-src_configure() {
 	XORG_CONFIGURE_OPTIONS=(
 		$(use_enable doc devel-docs)
 		$(use_enable selinux)
 		$(use_enable xkb)
 		--enable-xinput
 	)
-	xorg-2_src_configure
 }
